@@ -7,7 +7,7 @@ from config import Config
 from app import create_app, db
 from app.base.models import Role, User, Permission
 
-config = (os.getenv('FLASK_CONFIG') or 'DEBUG')
+config = (os.getenv('FLASK_CONFIG') or 'Production')
 app = create_app(config)
 migrate = Migrate(app, db)
 manager = Manager(app)

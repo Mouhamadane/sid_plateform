@@ -39,7 +39,7 @@ def register_blueprints(app):
 
 def create_app(config):
     app = Flask(__name__)
-    config_name = 'Default'
+    config_name = 'Production'
     
     app.config.from_object(config_dict[config_name])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
