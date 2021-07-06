@@ -1,0 +1,57 @@
+{% extends "user/index.html" %}
+
+{% block registered_memory %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Liste des mémoires</h6>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+      {% if category == 'error'%}
+      <br>
+      <div class="alert alert-danger alter-dismissable" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alter-dismissable" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% endif %}
+      {% endfor%}
+      {% endwith %}
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Sujet</th>
+              <th>Auteur</th>
+              <th style="text-align: center;">Année</th>
+              <th>Lien du document</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for memory in memories %}
+            <tr>
+              <td>{{ memory.title }}</td>
+              <td>{{ memory.user }}</td>
+              <td align="center">{{ memory.year }}</td>
+              <td> <a href="{{ memory.memory_link }}">Cliques ici</a></td>
+              <td style="text-align: center;">
+                <button title="Infos" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info-circle"></i></button>
+                <button title="J'adore" class="btn btn-circle btn-danger btn-sm"><i class="fas fa-heart"></i></button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

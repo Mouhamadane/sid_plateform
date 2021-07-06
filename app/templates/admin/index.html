@@ -1,0 +1,60 @@
+{% extends 'site-template/base.html' %}
+  {% block adminhome %}
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    {% include 'site-template/sidbar.html' %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        {% include 'site-template/navigation.html' %}
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Admin</h1>
+
+        </div>
+        <!-- /.container-fluid -->
+        {% block add_admin %}
+        {% endblock %}
+
+        {%  block registered %}
+        {% endblock %}
+        {%  block reset_email %}
+        {% endblock %}
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      {% include 'site-template/footer.html' %}
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  {% include 'site-template/logout.html' %}
+</html>
+
+{% endblock %}
+ 

@@ -1,0 +1,87 @@
+{% extends "user/index.html" %}
+
+{% block thread %}
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div  class="card o-hidden border-0 shadow-lg my-12">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Forum de discussion</h1>                    
+                        <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#ThreadModal">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Ajouter thread</span>
+                          </a>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <div style="width: 95%;" class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-4">Titre</div>
+                                <div class="col-lg-4">Description</div>
+                                <div class="col-lg-4">Dernier Post</div>
+                            </div>
+                        </div>
+                        <hr>
+                        {% for thread in threads %}
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <h3 class="panel-title">
+                                        <a href="{{ url_for('user_views.get_thread', thread_id=thread.id)}}">{{ thread.title }}</a>
+                                    </h3>
+                                </div>
+                                <div class="col-lg-4">{{ thread.description }}</div>
+                                <div class="col-lg-4"><span class="text">{{thread.last_post_reply().strftime('%d %B, %Y')}}</span> &nbsp;
+                                    <a href="{{ url_for('user_views.get_thread', thread_id=thread.id)}}" class="btn btn-primary btn-icon-split btn-sm">
+                                        <span class="icon text-white-50">
+                                        <i class="fas fa-envelope"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+          </div>
+
+    </div>
+
+</div>
+<!-- Thread Modal-->
+<div class="modal fade" id="ThreadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+            <div class="modal-header bg-gradient-primary">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Ajouter un thread</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">×</span>
+            </button>
+            </div>
+            <form method="POST" class="user" style="width: 95%; margin-left: 3%;">
+                <br>
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ form.title(class="form-control form-control-user",autocomplete="false",placeholder="Titre du thread...")}}
+                </div>
+                <div class="form-group">
+                    {{ form.description(class="form-control form-control-user",autocomplete="false", placeholder="Description ")}}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</a>
+                </div>
+            </form>
+      </div>
+    </div>
+</div>
+{% endblock %}
+ 

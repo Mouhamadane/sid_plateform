@@ -1,0 +1,59 @@
+{% extends "user/index.html" %}
+
+{% block focus_thread %}
+
+    <!-- Page Heading --
+
+        <!-- Content Row -->
+        <div class="row bg-gray-200 shadow-lg">
+            <!-- Border Left Utilities -->
+            <div class="col-lg-12">
+                <div class="text-center">                  
+                    <a href="{{ url_for('user_views.thread')}}" class="btn btn-primary btn-icon-split" >
+                        <span class="icon text-white-50">
+                          <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">retour aux threads</span>
+                      </a>
+                </div>
+                <br>
+
+                <div class="card mb-4 py-3 border-left-primary border-bottom-primary ">
+                <div class="card-body">
+                    Thread : {{ thread.title}} <br>
+                    {{ thread.description}} <br>
+                    <i class="fa fa-calendar"></i>  {{ thread.create_at.strftime('%d %B %Y')}}
+                    &nbsp; <a href="#mess"><i class="fa fa-envelope"></i>&nbsp; répondre</a>
+                </div>
+                </div>
+                <h3>Réponses--({{ replies|length }} total)</h3> 
+                {% for reply in replies %}   
+                <div class="card mb-3 py-1 border-left-success">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            {{reply.message}}
+                        </div>
+                        <div class="col-lg-3">
+                            <i class="fa fa-calendar"></i> <span>{{ reply.created_at.strftime('%d %B, %Y')}}</span> <br>
+                            <i class="fa fa-user"></i><span> {{ reply.user.full_name()}}</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+                <div class="card mb-4 py-3 border-left-info">
+                <div class="card-body">
+                    <form method="POST" id="mess">
+                        {{ form.csrf_token}}
+                        <div class="form-group">
+                            {{ form.message(class="form-control ", onfocus="this.value''", value="", cols="30", rows="5", placeholder="Ecrire votre message...")}}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Répondre</button>
+                    </form>
+                </div>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}
