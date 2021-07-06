@@ -26,3 +26,4 @@ MANIFEST
 myenv/
 venv/
 .vscode/
+database.db
