@@ -31,8 +31,8 @@ class Config():
     MAIL_PORT          = os.environ.get('MAIL_PORT', 587)
     MAIL_USE_TLS       = os.environ.get('MAIL_USE_TLS', True)
     MAIL_USE_SSL       = os.environ.get('MAIL_USE_SSL', False)
-    MAIL_USERNAME      = os.environ.get('MAIL_USERNAME', 'damanyelegrand@gmail.com')
-    MAIL_PASSWORD      = os.environ.get('MAIL_PASSWORD', 'dane158dane.')
+    MAIL_USERNAME      = os.environ.get('MAIL_USERNAME', 'naruto@titeuf.com')
+    MAIL_PASSWORD      = os.environ.get('MAIL_PASSWORD', 'vraimentquoihihi')
     MAIL_DEFAUT_SENDER = os.environ.get('MAIL_DEFAUT_SENDER', True)
 
     # Admin account
